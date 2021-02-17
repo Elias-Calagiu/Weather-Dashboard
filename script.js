@@ -28,7 +28,15 @@ $("#searchBtn").click(function(){
           // preventDefault();
       // console.log(queryURL);
       console.log(response)
-    // console.log(city)
+      $("#city").html("<h3>" + response.name + " Weather Details</h3>");
+      $("#wind").text("Wind Speed: " + response.wind.speed);
+      $("#humidity").text("Humidity: " + response.main.humidity);
+      $("#description").text("Description: " + response.weather[0].description);
+      var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+        // add temp content to html
+        $("#tempF").text("Temperature (F) " + tempF.toFixed(2));
+
 });
 });
 // We then created an AJAX call
