@@ -4,14 +4,9 @@ var apiKey = "&appid=24875e6cac4fb38c4b7d718765abc64f";
 
 // Here I create a variable to hold which city the user searches for
 
-// var city= ""
+var cityArray=[]
 
-// Here we are building the URL we need to query the database
-// var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
-
-// var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey
-
-
+var localStorage = localStorage.getItem("cities")
 // Create a function to show info when search is entered
 
 $("#searchBtn").click(function(){
@@ -20,6 +15,11 @@ $("#searchBtn").click(function(){
     .val()
     .trim();
     console.log(city)
+
+    if (city){
+        cityArray.push(city);
+        localStorage.setItem("cities", JSON.stringify(cityArray))
+    }
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey
     $.ajax({
         url: queryURL,
@@ -36,6 +36,14 @@ $("#searchBtn").click(function(){
 
         // add temp content to html
         $("#tempF").text("Temperature (F) " + tempF.toFixed(2));
+      $("#city2").html("<h3>" + response.name + " Weather Details</h3>");
+      $("#wind2").text("Wind Speed: " + response.wind.speed);
+      $("#humidity2").text("Humidity: " + response.main.humidity);
+      $("#description2").text("Description: " + response.weather[0].description);
+      var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+        // add temp content to html
+        $("#tempF2").text("Temperature (F) " + tempF.toFixed(2));
 
 });
 });
