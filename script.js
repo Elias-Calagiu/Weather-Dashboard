@@ -24,9 +24,6 @@ $("#searchBtn").click(function () {
     if (city) {
         cityArray.push(city);
         localStorage.setItem("cities", JSON.stringify(cityArray))
-        // for (let i = 0; i < cityArray.length; i++) {
-        //     $("#city2").append(cityArray[i])            
-        // }
 
     }
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey
@@ -56,14 +53,7 @@ $("#forecastSearchBtn").click(function () {
         .trim();
     console.log(city)
 
-    // if (city) {
-    //     cityArray.push(city);
-    //     localStorage.setItem("cities", JSON.stringify(cityArray))
-    //     // for (let i = 0; i < cityArray.length; i++) {
-    //     //     $("#city2").append(cityArray[i])            
-    //     // }
-
-    // }
+  
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + apiKey
     $.ajax({
         url: queryURL,
@@ -72,27 +62,8 @@ $("#forecastSearchBtn").click(function () {
         // preventDefault();
         // console.log(queryURL);
         console.log(response)
-        // $("#city").html("<h3>" + response.name + " Weather Details</h3>");
-        // $("#wind").text("Wind Speed: " + response.wind.speed);
-        // $("#humidity").text("Humidity: " + response.main.humidity);
-        // $("#description").text("Description: " + response.weather[0].description);
-        // var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-
-        // add temp content to html
-        // $("#tempF").text("Temperature (F): " + tempF.toFixed(2));
-
-        // var forecast = "";
-        // $("#city").html("<h3>" + response.name + " Weather Details</h3>");
-        // var forecastDate = response.list[i].dt_txt
-        // var forecastWind= $("#forecastWind").text("Wind Speed: " + response.list[i].wind.speed);
-        // var forecastHumidity= $("#forecastHumidity").text("Humidity: " + response.list[i].main.humidity);
-        // var forecastDescription= $("#forecastDescription").text("Description: " + response.list[i].weather[0].description);
-        // var forecastTempF = (response.list[i].main.temp - 273.15) * 1.80 + 32;
-
-        // add temp content to html
-        // $("#tempF").text("Temperature (F): " + tempF.toFixed(2));
         for (let i = 0; i < response.list.length; i ++) {
-            // forecast += `
+            
             $("#forecastDate").text(response.list[i].dt_txt)
             $("#forecastWind").text("Wind Speed: " + response.list[i].wind.speed);
             $("#forecastHumidity").text("Humidity: " + response.list[i].main.humidity);
@@ -100,7 +71,6 @@ $("#forecastSearchBtn").click(function () {
             var forecastTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
             $("#forecastTemp").text("Temperature (F): " + forecastTemp.toFixed(2));
         }
-        // $("#forecast").html(forecast)
     });
 
     
