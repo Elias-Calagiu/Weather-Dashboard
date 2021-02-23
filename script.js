@@ -93,7 +93,7 @@ $("#forecastSearchBtn").click(function () {
         // $("#tempF").text("Temperature (F): " + tempF.toFixed(2));
         for (let i = 0; i < response.list.length; i ++) {
             // forecast += `
-            response.list[i].dt_txt
+            $("#forecastDate").text(response.list[i].dt_txt)
             $("#forecastWind").text("Wind Speed: " + response.list[i].wind.speed);
             $("#forecastHumidity").text("Humidity: " + response.list[i].main.humidity);
             $("#forecastDescription").text("Description: " + response.list[i].weather[0].description);
