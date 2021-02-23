@@ -91,7 +91,7 @@ $("#forecastSearchBtn").click(function () {
 
         // add temp content to html
         // $("#tempF").text("Temperature (F): " + tempF.toFixed(2));
-        for (let i = 0; i < response.list.length; i = i + 8) {
+        for (let i = 0; i < response.list.length; i ++) {
             // forecast += `
             response.list[i].dt_txt
             $("#forecastWind").text("Wind Speed: " + response.list[i].wind.speed);
